@@ -8,3 +8,9 @@ html, body {
 	height: 100%;
 	
 }
+
+#instructions {
+	position: fixed;
+	top: 5px;
+	left: 5px;
+}

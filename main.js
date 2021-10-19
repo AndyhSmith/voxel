@@ -55,7 +55,7 @@ const renderer = new THREE.WebGLRenderer({canvas});
 const fov = 75;
 const aspect = 2;  // the canvas default
 const near = 0.1;
-const far = 15; // Sets The Render Distance
+const far = 20; // Sets The Render Distance
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 camera.position.y = 2;
 
@@ -206,16 +206,15 @@ makeTree(12,1,0)
 
 
 function loadData(theData) {
-	console.log(theData)
+	// console.log(theData)
 	let cursVal = 0;
-	console.log(theData);
+	// console.log(theData);
 	let cookieValues = theData.split("B");
 	while (cursVal < cookieValues.length) {
 		let a = parseInt(cookieValues[cursVal],10);
 		let b = parseInt(cookieValues[cursVal+1],10);
 		let c = parseInt(cookieValues[cursVal+2],10);
 		let d = parseInt(cookieValues[cursVal+3],10);
-		console.log(a,b,c,d)
 		makeInstance(geometry, blocks[a], 0x44aa88, b, c, d)
 		cursVal += 4;
 	}
@@ -446,46 +445,13 @@ function onDocumentKeyDown(event) {
 		firstCube.material.needsUpdate = true;
     }
 	
-/* 		let vectorA = new THREE.Vector3(0,1,0);
-		let distance2 = 2;
-		let raycaster2 = new THREE.Raycaster();
-		raycaster2.set(camera.position, vectorA);
-		//console.log(vectorA)
-		let intersects2 = raycaster2.intersectObjects(scene.children);
-		//console.log(intersects2)
-		if (intersects2.length > 0) {	
-			distance2 = intersects2[0].distance;
-			console.log(distance2)
-			
-		}
-		if (distance2 > .5) {
-			camera.position.x = camera.position.x + changeXMov;
-			camera.position.z = camera.position.z + changeZMov;
-		}
-		 */
 		
 	// Place Cube
 	if (keyCode == 69) {
-		/*let distance2 = 4
-		let vectorL = new THREE.Vector3(0,0,0);
-		camera.getWorldDirection(vectorL);
-		let raycaster2 = new THREE.Raycaster();
-		raycaster2.set(camera.position, vectorL);
-		let intersects2 = raycaster2.intersectObjects(scene.children);
-		if (intersects2.length > 0) {	
-			distance2 = intersects2[0].distance;
-			console.log("Looking at object")
-			cubes.push(makeInstance(geometry, true, 0x44aa88, Math.trunc(intersects2[0].point.x), Math.trunc(intersects2[0].point.y + 1), Math.trunc(intersects2[0].point.z)))
-		}*/
 		cubes.push(makeInstance(geometry, selectedTexture, 0x44aa88, firstCube.position.x, firstCube.position.y, firstCube.position.z));
 		userCookie += selectedBlock + "B" + firstCube.position.x + "B" + firstCube.position.y + "B" + firstCube.position.z + "B";
 		console.log(userCookie);
 		setCookie("username", userCookie, 30);
-	}
-	
-	if (keyCode = 81) {
-		
-		//scene.remove(selectedObject);
 	}
 };
 
